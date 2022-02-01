@@ -8,6 +8,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'aasd4asd63ghdfsd'
 
 def extract_zip(file_name):
+    os.makedirs('Extracted', exist_ok=True)
     shutil.rmtree('Extracted')
     shutil.unpack_archive(file_name,'Extracted')
 
