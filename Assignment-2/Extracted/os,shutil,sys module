@@ -1,0 +1,90 @@
+----------------------  sys module  -------------------------
+
+stdin - standard input
+stdout - standard output
+stderr - standard error
+.argv - command line arguments
+.exit() - to exit from program
+sys.path is a built-in variable within the sys module that returns the list of directories that the interpreter will search for the required module. 
+
+sys.modules return the name of the Python modules that the current shell has imported.
+
+sys.getrefcount() method is used to get the reference count for any given object. This value is used by Python as when this value becomes 0, the memory for that particular value is deleted.
+
+
+
+
+---------------------------  os module  -----------------------------
+
+Getting the Current working directory
+To get the location of the current working directory 'os.getcwd()' is used.
+
+
+Changing the Current working directory
+To change the current working directory(CWD) os.chdir() method is used. This method changes the CWD to a specified path. It only takes a single argument as a new directory path.
+
+
+os.mkdir() method in Python is used to create a directory named path with the specified numeric mode. This method raises FileExistsError if the directory to be created already exists.
+ 
+ 
+os.makedirs() method in Python is used to create a directory recursively. That means while making leaf directory if any intermediate-level directory is missing, os.makedirs() method will create them all.
+
+
+os.listdir() method in Python is used to get the list of all files and directories in the specified directory. If we don’t specify any directory, then the list of files and directories in the current working directory will be returned.
+ 
+ 
+ os.remove() method in Python is used to remove or delete a file path. This method can not remove or delete a directory. If the specified path is a directory then OSError will be raised by the method.
+ 
+ 
+os.rmdir() method in Python is used to remove or delete an empty directory. OSError will be raised if the specified path is not an empty directory.
+
+
+1. os.name: This function gives the name of the operating system dependent module imported. The following names have currently been registered: ‘posix’, ‘nt’, ‘os2’, ‘ce’, ‘java’ and ‘riscos’.
+
+
+2. os.error: All functions in this module raise OSError in the case of invalid or inaccessible file names and paths, or other arguments that have the correct type, but are not accepted by the operating system. os.error is an alias for built-in OSError exception. 
+
+
+ 3. os.popen(): This method opens a pipe to or from command. The return value can be read or written depending on whether the mode is ‘r’ or ‘w’. 
+ 
+ 
+ 4. os.close(): Close file descriptor fd. A file opened using open(), can be closed by close()only. But file opened through os.popen(), can be closed with close() or os.close(). If we try closing a file opened with open(), using os.close(), Python would throw TypeError. 
+ 
+ 
+ 5. os.rename(): A file old.txt can be renamed to new.txt, using the function os.rename(). The name of the file changes only if, the file exists and the user has sufficient privilege permission to change the file.
+ 
+ 
+ 6. os.remove(): Using the Os module we can remove a file in our system using the remove() method. To remove a file we need to pass the name of the file as a parameter. 
+ 
+ 
+ 7. os.path.exists(): This method will check whether a file exists or not by passing the name of the file as a parameter. OS module has a sub-module named PATH by using which we can perform many more functions. 
+ 
+ 
+ 8. os.path.getsize(): In this method, python will give us the size of the file in bytes. To use this method we need to pass the name of the file as a parameter.
+
+
+
+
+
+------------------------------------  shutil module  -------------------------------------
+
+
+shutil.copy() method in Python is used to copy the content of the source file to the destination file or directory. It also preserves the file’s permission mode but other metadata of the file like the file’s creation and modification times is not preserved.
+
+
+shutil.copy2() method in Python is used to copy the content of the source file to the destination file or directory. This method is identical to shutil.copy() method but it also tries to preserve the file’s metadata.
+
+
+shutil.copyfile() method in Python is used to copy the content of the source file to the destination file. The metadata of the file is not copied. Source and destination must represent a file and destination must be writable. If the destination already exists then it will be replaced with the source file otherwise a new file will be created.
+
+
+shutil.copytree() method recursively copies an entire directory tree rooted at source (src) to the destination directory. The destination directory, named by (dst) must not already exist. It will be created during copying.
+
+
+shutil.rmtree() is used to delete an entire directory tree, the path must point to a directory (but not a symbolic link to a directory).
+
+
+shutil.which() method tells the path to an executable application that would be run if the given cmd was called. This method can be used to find a file on a computer which is present on the PATH.
+
+
+
