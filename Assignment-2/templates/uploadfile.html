@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Zip</title>
+    <style>
+        h1{
+            text-align=center;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <h1>Upload Zip file from storage</h1>
+    <form method="post">
+        {{ form.csrf_token }}
+        {{ form.file }}
+        <input type="submit" value="Upload">
+    </form>
+</center>
+</body>
+</html>
