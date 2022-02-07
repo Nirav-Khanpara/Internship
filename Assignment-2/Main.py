@@ -83,6 +83,10 @@ def download_all():
     global subfolder_path
     global file_path
 
+    # if not then create
+    if not os.path.isdir('Downloads'):
+        os.mkdir('Downloads')
+
     # to remove previous files
     for file in os.scandir('Downloads'):
         os.remove(file.path)
