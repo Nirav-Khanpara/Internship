@@ -1,4 +1,6 @@
 import json
+import shutil
+
 from flask import Flask, render_template, send_file, flash
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileRequired
@@ -27,8 +29,9 @@ def extract_zip(file_name):
     try:
         os.mkdir(subfolder_path)
     except:
-        for file in os.scandir(subfolder_path):
-            os.remove(file.path)
+        shutil.rmtree(subfolder_path)
+        os.mkdir(subfolder_path)
+
 
     # Extracting Files
     extract_archive(os.path.join('ZipFile_Storage/',file_name.filename), outdir=subfolder_path)
@@ -82,4 +85,4 @@ def download_individual(fname):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run('0.0.0.0', debug=True)
