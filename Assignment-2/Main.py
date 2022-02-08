@@ -1,10 +1,11 @@
-from flask import Flask, render_template, send_file, flash, send_from_directory
-import requests
+import json
+from flask import Flask, render_template, send_file, flash
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileRequired
 from wtforms import FileField
 import os
 from patoolib import extract_archive
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'aasd4asd63ghdfsd'
@@ -58,7 +59,8 @@ def upload():
                 for file in i[-1]:
                     file_names.append(file)
 
-        return render_template("showunzippedfiles.html", files=file_names)
+        json_files = json.dumps(file_names)
+        return render_template("showunzippedfiles.html", files=file_names, json_files=json_files)
 
     else:
         if temp:
@@ -78,27 +80,6 @@ def download_individual(fname):
             file_path = i[0]
             return send_file(file_path+'/'+fname, as_attachment=True)
 
-@app.route("/downloadall", methods=['GET','POST'])
-def download_all():
-    global subfolder_path
-    global file_path
-
-    # if not then create
-    if not os.path.isdir('Downloads'):
-        os.mkdir('Downloads')
-
-    # to remove previous files
-    for file in os.scandir('Downloads'):
-        os.remove(file.path)
-
-    # Downloading all files
-    for i in os.walk(subfolder_path):
-        for f in i[-1]:
-            file_path = i[0]
-            data = requests.get('http://127.0.0.1:5000/'+file_path)
-            with open(os.path.join('Downloads/', f), 'wb') as file:
-                file.write(data.content)
-    return render_template('all_downloaded.html', path=os.path.realpath('Downloads'))
 
 if __name__ == '__main__':
     app.run(debug=True)
