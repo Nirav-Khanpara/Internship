@@ -10,16 +10,22 @@
 
 {% block data %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
-    function temp(){
+   async function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+   }
+
+    async function temp(){
         var newfiles = JSON.parse({{ json_files | tojson }})
-        console.log(newfiles)
+        // console.log(newfiles)
 
         $.ajax({
           url: '/',
-          success: function(data) {
+          success: async function(data) {
             for(let i=0; i<newfiles.length; i++){
-                console.log(newfiles[i])
+                // console.log(newfiles[i])
+                await sleep(100)
                 var blob=new Blob([data]);
                 var link=document.createElement('a');
                 link.href=window.URL.createObjectURL(blob);
@@ -27,9 +33,11 @@
                 link.click();
             }
           }
-});
-}
+        });
+    }
+
 </script>
+
 <a href="{{ url_for('upload') }}"><button class="btn btn-info">Click to go back</button></a>
 <button class="btn btn-info" onclick="temp()" style="float:right">Click to download all</button>
 <table class="table table-hover">
